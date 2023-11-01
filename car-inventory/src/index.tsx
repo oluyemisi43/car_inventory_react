@@ -1,17 +1,18 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
-import 'bootstrap/dist/css/bootstrap.min.css'
-import reportWebVitals from './reportWebVitals';
+import 'bootstrap/dist/css/bootstrap.min.css';
 import { Button, Navbar, Nav } from 'react-bootstrap';
 import {
   BrowserRouter as Router,
-  Routes, 
+  Routes,
   Route,
   Link
 }
 from 'react-router-dom';
-import logo from './assets/img/logo.jpg';
+import reportWebVitals from './reportWebVitals';
+import logo from "./assets/img/mustang.jpg";
+import { Home, Dashboard, Login } from './components';
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
@@ -19,42 +20,48 @@ const root = ReactDOM.createRoot(
 root.render(
   <React.StrictMode>
    <Router>
+   <Navbar bg='dark' variant='dark'>
 
-    <Navbar bg='dark' variant='dark'>
+   <Navbar.Brand href="/">
+   <img
+  alt="Car Logo"
+  src={logo}
+  width="30"
+  height="30"
+  className="d-inline-block align-top"
+  />
+   </Navbar.Brand>
+   <Nav className='nav' activeKey='/'>
+   <Nav.Item>
+   <Nav.Link as='div'>
+    <Link to='/'> Home </Link>
+    </Nav.Link>
+   </Nav.Item>
 
-    <Navbar.Brand>
-      <img
-        alt="Car Logo"
-        src={logo}
-        width="30"
-        height="30"
-        className="d-inline-block align-top"
-      />
-    </Navbar.Brand>
+   <Nav.Item>
+   <Nav.Link as='div'>
+    <Link to='/dashboard'> dashboard </Link>
+    </Nav.Link>
+   </Nav.Item>
 
-    <Nav className='nav' activeKey='/'>
+   <Nav.Item>
+   <Nav.Link as='div'>
+    <Link to='/login'> login </Link>
+    </Nav.Link>
+   </Nav.Item>
+   </Nav>
+   </Navbar>
 
-    <Nav.Item>
-      <Nav.Link as='div'>
-        <Link to='/'> Home </Link>
-      </Nav.Link>
-    </Nav.Item>
+<Routes>
+<Route path="/" element={<Home title="Car Inventory"/>} >
+        </Route>
+        <Route path="/dashboard"element={<Dashboard title="Car Dashboard"/>} >
+        </Route>
+        <Route path="/login"element={<Login/>} >
+        </Route>
+</Routes>
 
-    <Nav.Item>
-      <Nav.Link as='div'>
-        <Link to='/'> Dashboard </Link>
-      </Nav.Link>
-    </Nav.Item>
-
-    <Nav.Item>
-      <Nav.Link as='div'>
-        <Link to='/'> Profile </Link>
-      </Nav.Link>
-    </Nav.Item>
-
-  </Nav>
-    </Navbar> 
-    </Router>
+   </Router> 
   </React.StrictMode>
 );
 
