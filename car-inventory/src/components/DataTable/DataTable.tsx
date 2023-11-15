@@ -4,6 +4,7 @@ import { Button } from 'react-bootstrap';
 import { useGetData } from '../../custom-hooks';
 import { server_calls } from '../../api/server';
 import Modal from 'react-bootstrap/Modal';
+import { CarForm } from '../../components';
 
 export const DataTable = () => {
 
@@ -26,8 +27,9 @@ export const DataTable = () => {
 
 
     const deleteData = (id: string) => {
-        server_calls.delete(id)
-        window.location.reload()
+        server_calls.delete(id).then(e => {
+            window.location.reload()
+        });   
     }
     return (
         <div>
@@ -52,7 +54,7 @@ export const DataTable = () => {
                                     <Modal.Header>
                                         <Modal.Title>Update Car</Modal.Title>
                                     </Modal.Header>
-                                    
+                                    <Modal.Body> <CarForm id={selectedrow}/> </Modal.Body>
                                     <Modal.Footer>
                                         <button onClick={handleClose}>Cancel</button>
                                     </Modal.Footer>

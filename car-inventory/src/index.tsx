@@ -13,12 +13,15 @@ from 'react-router-dom';
 import reportWebVitals from './reportWebVitals';
 import logo from "./assets/img/mustang.jpg";
 import { Home, Dashboard, Login } from './components';
+import { FirebaseAppProvider } from 'reactfire';
+import { firebaseConfig } from './firebaseConfig'
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
 );
 root.render(
   <React.StrictMode>
+  <FirebaseAppProvider firebaseConfig={firebaseConfig}> {/* New Provider */}
    <Router>
    <Navbar bg='dark' variant='dark'>
 
@@ -46,7 +49,7 @@ root.render(
 
    <Nav.Item>
    <Nav.Link as='div'>
-    <Link to='/login'> login </Link>
+    <Link to='/account'> account </Link>
     </Nav.Link>
    </Nav.Item>
    </Nav>
@@ -57,11 +60,12 @@ root.render(
         </Route>
         <Route path="/dashboard"element={<Dashboard title="Car Dashboard"/>} >
         </Route>
-        <Route path="/login"element={<Login/>} >
+        <Route path="/account"element={<Login/>} >
         </Route>
 </Routes>
 
    </Router> 
+   </FirebaseAppProvider>
   </React.StrictMode>
 );
 
